@@ -1,0 +1,55 @@
+=== Terraform Init ===
+PS C:\terraform-docker-task> terraform init
+
+Initializing the backend...
+Initializing provider plugins...
+- Finding kreuzwerker/docker versions matching "~> 3.0"...
+- Installing kreuzwerker/docker v3.9.0...
+- Installed kreuzwerker/docker v3.9.0
+
+Terraform has been successfully initialized!
+
+
+=== Terraform Plan ===
+PS C:\terraform-docker-task> terraform plan
+
+Terraform used the selected providers to generate the following execution plan.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_image.nginx will be created
+  + resource "docker_image" "nginx" {
+      + name         = "nginx:latest"
+      + keep_locally = false
+    }
+
+  # docker_container.nginx will be created
+  + resource "docker_container" "nginx" {
+      + name  = "terraform-nginx"
+      + image = (known after apply)
+
+      + ports {
+          + internal = 80
+          + external = 8081
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+
+=== Terraform Apply (Successful) ===
+PS C:\terraform-docker-task> terraform apply
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Enter a value: yes
+
+docker_image.nginx: Creating...
+docker_image.nginx: Creation complete
+docker_container.nginx: Creating...
+docker_container.nginx: Creation complete
+
+Apply complete! Resources: 2 added, 0 changed, 0 
